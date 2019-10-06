@@ -1,35 +1,34 @@
 # SBT Scala template with auto-generated WSDL
 
+The SBT project kickstarter template that encapsulates all the dirty work around WSDL 
+and raw Java beans generation for WSDL. The goal is to automate and hide this legacy boilerplate code
+and keep your Scala project pristine in the VCS.
+
 ### Overview 
 
-This sample SBT project template aims to encapsulate all the dirty work with WSDL 
-and raw Java bean generation for projects in Scala with WSDL, 
-by automating this nasty process and cleaning up your 
-beautiful VCS out of this mock code.
-
 To use legacy SOAP services, you are often required to generate
-Java beans based on the WSDL schema. With such sample template,
+Java beans based on the WSDL schema. With a template like this,
 this can be done automatically when you build the project 
 (precisely speaking, with ``sbt compile``), but also 
-could be invoked manually with ``bin/wsdl_import.sh`` script provided. 
+could be invoked manually with the ``bin/wsdl_import.sh`` script. 
 
 The main WSDL generation routine is handled by ``wsdl`` subproject, which produces 
-plain Java beans into its src folder and frees the repository from holding them under VCS.
-WSDL generation itself employs nothing but native Java (as well as for executing SOAP calls)
-so the client stays clear from unnecessary 3rd parties, 
+plain Java beans into its own `src` folder and protects the repository from holding them under VCS.
+WSDL generation itself employs nothing but native Java's `wsimport` (also, using JRE's `rt.jar`
+for executing SOAP calls) so the client stays clear from unnecessary 3rd parties,
 having just essential logging & testing ones.
 A WSDL file could be also placed locally (e.g. ``/bin/wsdl_local/nl.xml``) 
-if it requires a little fixture in XML schema for ``wsimport`` to be able to 
-generate Java beans out of it. See comments in the sh file.
+if it requires a little fixture in the XML schema for ``wsimport`` to be able to 
+generate Java beans out of it. Check comments in the sh file for more details.
 
 ### Typical usage
 
-Feel free to fork this repo and start your project with this template.
-Or just copy-paste what you're interested in.
-
 Start with ``sbt compile`` to conveniently set an IDE project, so all the Java bean sources
 would be produced for you and the IDE would be able to link dependencies.
-When coding, instantiate a SOAP service as usual and continue using the generated code. 
+For coding, instantiate a SOAP service as usual and continue using the generated code. 
+
+Feel free to fork this repo and start your project with this template.
+Or just copy-paste what you're interested in.
 
 ### Building and publishing
 
